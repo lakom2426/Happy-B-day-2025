@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: radial-gradient(circle at top, #ffdee9, #b5fffc);
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.8em;
+      color: #fff;
+      margin-top: 60px;
+      animation: fadeInZoom 1.5s ease-in-out;
+      text-shadow: 0 0 15px #ff69b4, 0 0 30px #ff69b4;
+    }
+
+    @keyframes fadeInZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    p {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4em;
+      color: #c80808;
+      margin: 20px;
+      text-shadow: 0 0 5px #f656a6, 0 0 10px #ff69b4;
+    }
+
+    .cake {
+      font-size: 5em;
+      animation: bounce 1s infinite alternate;
+    }
+
+    @keyframes bounce {
+      to {
+        transform: translateY(-20px);
+      }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin: 40px 20px;
+    }
+
+    .card {
+      position: relative;
+      width: 250px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.07);
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    .card::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1em;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .balloon {
+      position: absolute;
+      font-size: 3em;
+      bottom: -700px;
+      animation: floatUp 12s linear infinite;
+      text-shadow: 0 0 10px #ff69b4;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-120vh); opacity: 0; }
+    }
+
+    #music-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+
+    #music-btn:hover {
+      background: #ff85c1;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Star Background */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+        
+      }
+
+      #music-btn {
+        top: 10px;
+        right: 10px;
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+    }
+    .slider-container {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  margin: 50px auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slider-track img {
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 105, 180, 0.7);
+  border: none;
+  font-size: 2rem;
+  color: white;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 5;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 105, 180, 1);
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+
+.slider-btn.next {
+  right: 10px;
+}
+
+h3{
+  text-align: center;
+  color: rgb(199, 52, 52);
+  font-family: 'Pacifico', cursive;
+}
+
+.date-label {
+  padding: 10px;
+  font-size: 1em;
+  color: #ff1493;
+  background: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.slider-track {
+  scroll-behavior: smooth;
+}
+    
+  </style>
+</head>
+<body>
+  <h1>Happyyy B'dayyy Komalll 💕</h1>
+  <div class="cake">🫶🏻🎂</div>
+  <p>Wishing u happiest b'dayyy my 🫶🏻 Mayyy ur dayyy be amazing as me 😜<br>
+    I will pray to God that u become whatever u want to become in ur life & Stay healthy<br>
+    Today is very special day, of course ur b'dayyy but one more thing our journey started today 1 year ago<br>
+    & I wish that just like this one year has passed, our next 60 years will also pass in the same way<br>
+    Thank u for coming into my life and giving me so much love 🥹🫂<br>
+    I promise I'm with u in every situation 🤞🏻<br>
+    I 🫶🏻 u end of my life<br>
+    Once again happyyy b'dayyy for the one who makes my heart smile every day thank u so much for this 💕<br><br></p>
+
+    <h3>Our Journey Started From Here 💕</h3>
+<div class="gallery">
+  <div class="card">
+    <img src="Hands image 1.jpg" alt="Memory 1">
+    <div class="date-label">28 July 2024</div>
+  </div>
+  <div class="card">
+    <img src="Hands image 2.jpg" alt="Memory 2">
+    <div class="date-label">07 Sep 2024</div>
+  </div>
+  <div class="card">
+    <img src="Hands image 3.jpg" alt="Memory 3">
+    <div class="date-label">02 Oct 2024</div>
+  </div>
+</div>
+
+  <h2 style="font-family: 'Pacifico', cursive; color: #c80808; margin-top: 60px;">Memories 🥰</h2>
+<div class="slider-container">
+  <button class="slider-btn prev">❮</button>
+  <div class="slider-track">
+    <img src="Slide image 1.jpg" alt="Slide 1">
+    <img src="Slide image 2.jpg" alt="Slide 2">
+    <img src="Slide image 3.jpg" alt="Slide 3">
+    <img src="Slide image 4.jpg" alt="Slide 4">
+    <img src="Slide image 5.jpg" alt="Slide 5">
+    <img src="Slide image 6.jpg" alt="Slide 6">
+    <img src="Slide image 7.jpg" alt="Slide 7">
+    <img src="Slide image 8.jpg" alt="Slide 8">
+    <img src="Slide image 9.jpg" alt="Slide 9">
+    <img src="Slide image 10.jpg" alt="Slide 10">
+    <img src="Slide image 11.jpg" alt="Slide 11">
+  </div>
+  <button class="slider-btn next">❯</button>
+</div>
+
+
+  <button id="music-btn">Play Music</button>
+  <audio id="birthday-song" src="Tum Mile Song.mp3"></audio>
+
+  <!-- Floating Balloons -->
+  <!--<div class="balloon" style="left: 10%; animation-delay: 0s;">🎈</div>
+  <div class="balloon" style="left: 45%; animation-delay: 3s;">🎈</div>
+  <div class="balloon" style="left: 75%; animation-delay: 6s;">🎈</div>-->
+
+  <!-- Confetti -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Stars background -->
+  <div class="stars" id="stars"></div>
+
+  <script>
+    // Music toggle
+    const music = document.getElementById('birthday-song');
+    const btn = document.getElementById('music-btn');
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = 'Pause Music';
+      } else {
+        music.pause();
+        btn.textContent = 'Play Music';
+      }
+    });
+
+    // Confetti Setup
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const pieces = Array.from({ length: 200 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height - height,
+      size: Math.random() * 6 + 4,
+      speed: Math.random() * 3 + 1,
+      rotation: Math.random() * 360,
+      color: `hsl(${Math.random() * 360}, 100%, 60%)`
+    }));
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, width, height);
+      for (let p of pieces) {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        ctx.restore();
+        p.y += p.speed;
+        p.rotation += 2;
+        if (p.y > height) {
+          p.y = 0;
+          p.x = Math.random() * width;
+        }
+      }
+      requestAnimationFrame(drawConfetti);
+    }
+
+    drawConfetti();
+
+    // Stars background
+    const starField = document.getElementById('stars');
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 2}s`;
+      starField.appendChild(star);
+    }
+    // Image Slider Logic
+const track = document.querySelector('.slider-track');
+const slides = document.querySelectorAll('.slider-track img');
+const prevBtn = document.querySelector('.slider-btn.prev');
+const nextBtn = document.querySelector('.slider-btn.next');
+let currentIndex = 0;
+
+function updateSlider() {
+  const slideWidth = slides[0].clientWidth;
+  track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex === 0) ? slides.length - 1 : currentIndex - 1;
+  updateSlider();
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateSlider();
+});
+
+window.addEventListener('resize', updateSlider);
+
+  </script>
+</body>
+</html>
